@@ -1,0 +1,5 @@
+# Expected-volatile keys that should not be treated as compliance drift.
+# One dotted-path pattern per line; '#' starts a comment.
+
+# Capture metadata changes on every snapshot.
+metadata.*

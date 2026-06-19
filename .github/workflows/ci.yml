@@ -1,0 +1,41 @@
+name: CI
+
+on:
+  push:
+    branches: [main, master]
+  pull_request:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        python-version: ["3.10", "3.11", "3.12"]
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Python ${{ matrix.python-version }}
+        uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python-version }}
+
+      - name: Install
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install -e ".[dev]"
+
+      - name: Run tests
+        run: python -m pytest -v
+
+      - name: Smoke test the CLI on examples
+        run: |
+          compliancedrift baseline examples/baseline-config.json -o /tmp/baseline.json
+          compliancedrift verify /tmp/baseline.json
+          compliancedrift diff /tmp/baseline.json examples/drifted-config.json --json
+          # Drift gate must fail (exit 1) on the drifted example.
+          if compliancedrift diff /tmp/baseline.json examples/drifted-config.json --fail-on-drift; then
+            echo "expected drift gate to fail" && exit 1
+          fi
+          # With metadata ignored the remaining diff still has drift; confirm gate passes when clean.
+          compliancedrift diff examples/baseline-config.json examples/baseline-config.json --fail-on-drift

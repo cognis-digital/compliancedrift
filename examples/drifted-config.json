@@ -1,0 +1,39 @@
+{
+  "service": {
+    "name": "payments-api",
+    "version": "2.5.0",
+    "replicas": 3
+  },
+  "security": {
+    "tls": {
+      "enabled": true,
+      "min_version": "1.0"
+    },
+    "auth": {
+      "mfa_required": false,
+      "session_timeout_minutes": 120
+    },
+    "password_policy": {
+      "min_length": 8,
+      "require_symbol": true,
+      "max_age_days": 90
+    }
+  },
+  "logging": {
+    "level": "debug",
+    "audit_enabled": true,
+    "retention_days": 365,
+    "ship_to": "syslog://collector.internal"
+  },
+  "network": {
+    "allowed_cidrs": [
+      "10.0.0.0/8",
+      "0.0.0.0/0"
+    ],
+    "egress_default": "allow"
+  },
+  "metadata": {
+    "captured_at": "2026-06-19T14:31:09Z",
+    "captured_by": "compliance-bot"
+  }
+}

@@ -1,0 +1,38 @@
+{
+  "service": {
+    "name": "payments-api",
+    "version": "2.4.1",
+    "replicas": 3
+  },
+  "security": {
+    "tls": {
+      "enabled": true,
+      "min_version": "1.2"
+    },
+    "auth": {
+      "mfa_required": true,
+      "session_timeout_minutes": 30
+    },
+    "password_policy": {
+      "min_length": 14,
+      "require_symbol": true,
+      "max_age_days": 90
+    }
+  },
+  "logging": {
+    "level": "info",
+    "audit_enabled": true,
+    "retention_days": 365
+  },
+  "network": {
+    "allowed_cidrs": [
+      "10.0.0.0/8",
+      "172.16.0.0/12"
+    ],
+    "egress_default": "deny"
+  },
+  "metadata": {
+    "captured_at": "2026-06-19T00:00:00Z",
+    "captured_by": "compliance-bot"
+  }
+}
