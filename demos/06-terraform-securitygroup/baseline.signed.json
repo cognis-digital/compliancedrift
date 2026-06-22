@@ -1,0 +1,41 @@
+{
+  "algorithm": "sha256",
+  "compliancedrift_baseline": "1",
+  "config": {
+    "egress": [
+      {
+        "cidr_blocks": [
+          "0.0.0.0/0"
+        ],
+        "description": "all outbound",
+        "from_port": 0,
+        "protocol": "-1",
+        "to_port": 0
+      }
+    ],
+    "ingress": [
+      {
+        "cidr_blocks": [
+          "10.0.1.0/24"
+        ],
+        "description": "HTTPS from ALB",
+        "from_port": 443,
+        "protocol": "tcp",
+        "to_port": 443
+      },
+      {
+        "cidr_blocks": [
+          "10.0.0.10/32"
+        ],
+        "description": "SSH from bastion",
+        "from_port": 22,
+        "protocol": "tcp",
+        "to_port": 22
+      }
+    ],
+    "name": "web-tier-sg",
+    "resource_type": "aws_security_group",
+    "vpc_id": "vpc-0a1b2c3d4e5f6"
+  },
+  "digest": "898d0ceabc1834d25eca9d169efa65b44ef52a041a4e16a74285f5bbc141fd69"
+}

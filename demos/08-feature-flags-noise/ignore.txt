@@ -1,0 +1,7 @@
+# Feature-flag values and rollout percentages are expected to change as
+# product runs experiments; only telemetry bookkeeping is fully ignored here.
+# (Flag changes are intentionally NOT ignored, so they still show up; the point
+# of this demo is to separate "expected product churn" from "security drift".)
+telemetry.last_evaluated
+telemetry.evaluation_id
+telemetry.sdk_version

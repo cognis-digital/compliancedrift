@@ -1,0 +1,40 @@
+{
+  "kind": "Deployment",
+  "metadata": {
+    "name": "checkout-service",
+    "namespace": "payments"
+  },
+  "spec": {
+    "replicas": 3,
+    "template": {
+      "spec": {
+        "automountServiceAccountToken": false,
+        "securityContext": {
+          "runAsNonRoot": true,
+          "runAsUser": 10001,
+          "fsGroup": 10001,
+          "seccompProfile": {
+            "type": "RuntimeDefault"
+          }
+        },
+        "containers": [
+          {
+            "name": "checkout",
+            "image": "registry.internal/checkout:1.8.2",
+            "imagePullPolicy": "Always",
+            "securityContext": {
+              "privileged": false,
+              "allowPrivilegeEscalation": false,
+              "readOnlyRootFilesystem": true,
+              "capabilities": {
+                "drop": [
+                  "ALL"
+                ]
+              }
+            }
+          }
+        ]
+      }
+    }
+  }
+}

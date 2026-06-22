@@ -1,0 +1,28 @@
+{
+  "rbac": {
+    "roles": {
+      "viewer": {
+        "verbs": [
+          "get",
+          "list",
+          "watch"
+        ]
+      },
+      "deployer": {
+        "verbs": [
+          "*"
+        ]
+      }
+    },
+    "bindings": {
+      "oncall": "deployer",
+      "auditors": "deployer"
+    },
+    "cluster_admin_count": 9,
+    "permissions": {
+      "allow_wildcard_verbs": true,
+      "allow_escalate": true,
+      "allow_bind": false
+    }
+  }
+}

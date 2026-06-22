@@ -1,0 +1,28 @@
+{
+  "algorithm": "sha256",
+  "compliancedrift_baseline": "1",
+  "config": {
+    "bucket": "acme-customer-exports",
+    "encryption": {
+      "KMSMasterKeyID": "arn:aws:kms:us-east-1:111122223333:key/exports-cmk",
+      "SSEAlgorithm": "aws:kms"
+    },
+    "logging": {
+      "TargetBucket": "acme-access-logs",
+      "TargetPrefix": "customer-exports/"
+    },
+    "policy": {
+      "allow_public_read": false,
+      "enforce_tls": true
+    },
+    "public_access_block": {
+      "BlockPublicAcls": true,
+      "BlockPublicPolicy": true,
+      "IgnorePublicAcls": true,
+      "RestrictPublicBuckets": true
+    },
+    "region": "us-east-1",
+    "versioning": "Enabled"
+  },
+  "digest": "2aea1288ed8ddd1dd201b78ec91a9c7750b8d1f51f03a3141827d967a2b298f6"
+}

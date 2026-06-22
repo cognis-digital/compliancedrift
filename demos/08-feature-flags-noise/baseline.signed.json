@@ -1,0 +1,25 @@
+{
+  "algorithm": "sha256",
+  "compliancedrift_baseline": "1",
+  "config": {
+    "app": "storefront",
+    "flags": {
+      "checkout_v2": false,
+      "dark_mode": true,
+      "recommendations": true
+    },
+    "rollout": {
+      "checkout_v2_percent": 0,
+      "region": "us"
+    },
+    "security": {
+      "flag_admin_mfa": true
+    },
+    "telemetry": {
+      "evaluation_id": "eval-7781",
+      "last_evaluated": "2026-06-10T00:00:00Z",
+      "sdk_version": "4.2.0"
+    }
+  },
+  "digest": "634dc9fc3d86c0aa3c916d6a592e82ced2817ba4b1101ba3f9b2f56ca22fb3eb"
+}

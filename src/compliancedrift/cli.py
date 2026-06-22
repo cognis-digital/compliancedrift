@@ -17,6 +17,7 @@ from . import __version__
 from .baseline import build_baseline, extract_config, is_baseline, verify_baseline
 from .diff import ADDED, CHANGED, REMOVED, DriftReport, diff_configs
 from .ignore import IgnoreList
+from .sarif import to_sarif_json
 
 EXIT_OK = 0
 EXIT_DRIFT = 1
@@ -135,7 +136,9 @@ def cmd_diff(args: argparse.Namespace) -> int:
     ignore = _collect_ignore(args)
     report = diff_configs(base, current, ignore)
 
-    if args.json:
+    if args.sarif:
+        print(to_sarif_json(report, baseline_uri=args.baseline, current_uri=args.current))
+    elif args.json:
         print(json.dumps(report.to_dict(), indent=2, ensure_ascii=False))
     else:
         print(_render_table(report))
@@ -175,6 +178,10 @@ def build_parser() -> argparse.ArgumentParser:
         help="file of ignore patterns, one per line (repeatable)",
     )
     p_diff.add_argument("--json", action="store_true", help="emit JSON drift report")
+    p_diff.add_argument(
+        "--sarif", action="store_true",
+        help="emit a SARIF 2.1.0 log (for GitHub code scanning / CI dashboards)",
+    )
     p_diff.add_argument(
         "--fail-on-drift", action="store_true",
         help="exit non-zero when any drift is detected (CI gate)",

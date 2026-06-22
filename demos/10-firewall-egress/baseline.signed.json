@@ -1,0 +1,30 @@
+{
+  "algorithm": "sha256",
+  "compliancedrift_baseline": "1",
+  "config": {
+    "firewall": {
+      "allowed_egress": [
+        {
+          "dest": "10.0.5.0/24",
+          "note": "primary db",
+          "port": 5432,
+          "proto": "tcp"
+        },
+        {
+          "dest": "10.0.9.10/32",
+          "note": "internal vault",
+          "port": 443,
+          "proto": "tcp"
+        }
+      ],
+      "default_policy": {
+        "forward": "DROP",
+        "input": "DROP",
+        "output": "DROP"
+      },
+      "egress_default": "deny"
+    },
+    "host": "payments-worker-07"
+  },
+  "digest": "98aa215df2763bb6061a2cc638fbfeb1c82b34bd77f89bc29a0cf330978f8190"
+}

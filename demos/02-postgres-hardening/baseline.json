@@ -1,0 +1,23 @@
+{
+  "engine": "postgres",
+  "version": "16.3",
+  "parameters": {
+    "ssl": "on",
+    "ssl_min_protocol_version": "TLSv1.2",
+    "password_encryption": "scram-sha-256",
+    "log_connections": "on",
+    "log_disconnections": "on",
+    "log_statement": "ddl",
+    "shared_preload_libraries": "pgaudit",
+    "row_security": "on"
+  },
+  "hba": [
+    {
+      "type": "hostssl",
+      "database": "all",
+      "user": "all",
+      "address": "10.0.0.0/8",
+      "method": "scram-sha-256"
+    }
+  ]
+}

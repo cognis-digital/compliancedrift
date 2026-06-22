@@ -1,0 +1,45 @@
+{
+  "algorithm": "sha256",
+  "compliancedrift_baseline": "1",
+  "config": {
+    "kind": "Deployment",
+    "metadata": {
+      "name": "checkout-service",
+      "namespace": "payments"
+    },
+    "spec": {
+      "replicas": 3,
+      "template": {
+        "spec": {
+          "automountServiceAccountToken": false,
+          "containers": [
+            {
+              "image": "registry.internal/checkout:1.8.2",
+              "imagePullPolicy": "Always",
+              "name": "checkout",
+              "securityContext": {
+                "allowPrivilegeEscalation": false,
+                "capabilities": {
+                  "drop": [
+                    "ALL"
+                  ]
+                },
+                "privileged": false,
+                "readOnlyRootFilesystem": true
+              }
+            }
+          ],
+          "securityContext": {
+            "fsGroup": 10001,
+            "runAsNonRoot": true,
+            "runAsUser": 10001,
+            "seccompProfile": {
+              "type": "RuntimeDefault"
+            }
+          }
+        }
+      }
+    }
+  },
+  "digest": "8508238864a07b55425d1e894a9318b0f71aeb4e9293753fe35adb6d362b8b04"
+}

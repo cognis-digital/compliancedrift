@@ -1,0 +1,22 @@
+{
+  "bucket": "acme-customer-exports",
+  "region": "us-east-1",
+  "public_access_block": {
+    "BlockPublicAcls": false,
+    "IgnorePublicAcls": true,
+    "BlockPublicPolicy": false,
+    "RestrictPublicBuckets": false
+  },
+  "encryption": {
+    "SSEAlgorithm": "AES256"
+  },
+  "versioning": "Suspended",
+  "logging": {
+    "TargetBucket": "acme-access-logs",
+    "TargetPrefix": "customer-exports/"
+  },
+  "policy": {
+    "enforce_tls": false,
+    "allow_public_read": true
+  }
+}

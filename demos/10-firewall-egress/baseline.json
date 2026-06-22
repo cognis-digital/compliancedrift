@@ -1,0 +1,25 @@
+{
+  "host": "payments-worker-07",
+  "firewall": {
+    "default_policy": {
+      "input": "DROP",
+      "forward": "DROP",
+      "output": "DROP"
+    },
+    "egress_default": "deny",
+    "allowed_egress": [
+      {
+        "dest": "10.0.5.0/24",
+        "port": 5432,
+        "proto": "tcp",
+        "note": "primary db"
+      },
+      {
+        "dest": "10.0.9.10/32",
+        "port": 443,
+        "proto": "tcp",
+        "note": "internal vault"
+      }
+    ]
+  }
+}

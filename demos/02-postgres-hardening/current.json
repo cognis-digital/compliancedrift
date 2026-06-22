@@ -1,0 +1,23 @@
+{
+  "engine": "postgres",
+  "version": "16.3",
+  "parameters": {
+    "ssl": "off",
+    "ssl_min_protocol_version": "TLSv1",
+    "password_encryption": "md5",
+    "log_connections": "off",
+    "log_disconnections": "on",
+    "log_statement": "none",
+    "shared_preload_libraries": "",
+    "row_security": "on"
+  },
+  "hba": [
+    {
+      "type": "host",
+      "database": "all",
+      "user": "all",
+      "address": "0.0.0.0/0",
+      "method": "trust"
+    }
+  ]
+}

@@ -13,6 +13,7 @@ from .digest import normalize, compute_digest
 from .diff import diff_configs, DriftReport, Change
 from .ignore import IgnoreList
 from .baseline import build_baseline, verify_baseline
+from .sarif import build_sarif, to_sarif_json
 
 __all__ = [
     "__version__",
@@ -24,4 +25,6 @@ __all__ = [
     "IgnoreList",
     "build_baseline",
     "verify_baseline",
+    "build_sarif",
+    "to_sarif_json",
 ]

@@ -1,0 +1,34 @@
+{
+  "algorithm": "sha256",
+  "compliancedrift_baseline": "1",
+  "config": {
+    "daemon": {
+      "default-ulimits": {
+        "nofile": {
+          "Hard": 65536,
+          "Soft": 65536
+        }
+      },
+      "icc": false,
+      "live-restore": true,
+      "log-driver": "json-file",
+      "log-opts": {
+        "max-file": "3",
+        "max-size": "10m"
+      },
+      "no-new-privileges": true,
+      "userland-proxy": false,
+      "userns-remap": "default"
+    },
+    "snapshot": {
+      "audit_run_id": "run-0001",
+      "captured_at": "2026-06-01T09:00:00Z",
+      "host": "docker-node-04"
+    },
+    "tls": {
+      "tlscacert": "/etc/docker/ca.pem",
+      "tlsverify": true
+    }
+  },
+  "digest": "4cbbbfb03239061e9510c888bcb3aa8888c4be28e9927f66cf7e1eac722e1a70"
+}

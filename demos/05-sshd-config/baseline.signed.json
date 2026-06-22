@@ -1,0 +1,25 @@
+{
+  "algorithm": "sha256",
+  "compliancedrift_baseline": "1",
+  "config": {
+    "host": "bastion-01.acme.internal",
+    "sshd": {
+      "AllowAgentForwarding": "no",
+      "AllowGroups": "sysadmins",
+      "ChallengeResponseAuthentication": "no",
+      "Ciphers": "chacha20-poly1305@openssh.com,aes256-gcm@openssh.com",
+      "ClientAliveCountMax": 2,
+      "ClientAliveInterval": 300,
+      "LoginGraceTime": 30,
+      "MaxAuthTries": 3,
+      "PasswordAuthentication": "no",
+      "PermitEmptyPasswords": "no",
+      "PermitRootLogin": "no",
+      "Port": 22,
+      "Protocol": 2,
+      "PubkeyAuthentication": "yes",
+      "X11Forwarding": "no"
+    }
+  },
+  "digest": "ab0cc7d3b42745f83d484a1d7965ec03ebd29f54666aa446168d0b3f9388eb7e"
+}

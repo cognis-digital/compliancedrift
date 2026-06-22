@@ -1,0 +1,28 @@
+{
+  "algorithm": "sha256",
+  "compliancedrift_baseline": "1",
+  "config": {
+    "engine": "postgres",
+    "hba": [
+      {
+        "address": "10.0.0.0/8",
+        "database": "all",
+        "method": "scram-sha-256",
+        "type": "hostssl",
+        "user": "all"
+      }
+    ],
+    "parameters": {
+      "log_connections": "on",
+      "log_disconnections": "on",
+      "log_statement": "ddl",
+      "password_encryption": "scram-sha-256",
+      "row_security": "on",
+      "shared_preload_libraries": "pgaudit",
+      "ssl": "on",
+      "ssl_min_protocol_version": "TLSv1.2"
+    },
+    "version": "16.3"
+  },
+  "digest": "971c346cbc01717d9e3982cb4adc6f8c209391e4fba83e12d876c5edaecf8282"
+}

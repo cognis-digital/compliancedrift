@@ -1,0 +1,20 @@
+{
+  "app": "storefront",
+  "flags": {
+    "checkout_v2": true,
+    "dark_mode": true,
+    "recommendations": true
+  },
+  "rollout": {
+    "checkout_v2_percent": 25,
+    "region": "us"
+  },
+  "telemetry": {
+    "last_evaluated": "2026-06-21T11:05:33Z",
+    "evaluation_id": "eval-9930",
+    "sdk_version": "4.3.1"
+  },
+  "security": {
+    "flag_admin_mfa": true
+  }
+}

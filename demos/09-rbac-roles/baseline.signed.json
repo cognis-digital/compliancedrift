@@ -1,0 +1,38 @@
+{
+  "algorithm": "sha256",
+  "compliancedrift_baseline": "1",
+  "config": {
+    "rbac": {
+      "bindings": {
+        "auditors": "viewer",
+        "oncall": "deployer"
+      },
+      "cluster_admin_count": 2,
+      "permissions": {
+        "allow_bind": false,
+        "allow_escalate": false,
+        "allow_wildcard_verbs": false
+      },
+      "roles": {
+        "deployer": {
+          "verbs": [
+            "get",
+            "list",
+            "watch",
+            "create",
+            "update",
+            "patch"
+          ]
+        },
+        "viewer": {
+          "verbs": [
+            "get",
+            "list",
+            "watch"
+          ]
+        }
+      }
+    }
+  },
+  "digest": "27ee269a7c17e5144870efc70855e6ec2e91ce1e84e6d11c15aaabae94cba779"
+}

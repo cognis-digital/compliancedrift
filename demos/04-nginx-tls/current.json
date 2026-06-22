@@ -1,0 +1,21 @@
+{
+  "server_name": "api.acme.example",
+  "listen": 443,
+  "ssl": {
+    "protocols": [
+      "TLSv1",
+      "TLSv1.1",
+      "TLSv1.2",
+      "TLSv1.3"
+    ],
+    "ciphers": "HIGH:!aNULL:!MD5",
+    "prefer_server_ciphers": "off",
+    "session_tickets": "on",
+    "stapling": "on"
+  },
+  "headers": {
+    "X-Content-Type-Options": "nosniff",
+    "X-Frame-Options": "SAMEORIGIN"
+  },
+  "server_tokens": "on"
+}

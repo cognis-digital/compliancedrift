@@ -1,0 +1,20 @@
+{
+  "host": "bastion-01.acme.internal",
+  "sshd": {
+    "Port": 22,
+    "Protocol": 2,
+    "PermitRootLogin": "no",
+    "PasswordAuthentication": "no",
+    "PubkeyAuthentication": "yes",
+    "PermitEmptyPasswords": "no",
+    "ChallengeResponseAuthentication": "no",
+    "X11Forwarding": "no",
+    "AllowAgentForwarding": "no",
+    "MaxAuthTries": 3,
+    "ClientAliveInterval": 300,
+    "ClientAliveCountMax": 2,
+    "LoginGraceTime": 30,
+    "Ciphers": "chacha20-poly1305@openssh.com,aes256-gcm@openssh.com",
+    "AllowGroups": "sysadmins"
+  }
+}

@@ -1,0 +1,25 @@
+{
+  "algorithm": "sha256",
+  "compliancedrift_baseline": "1",
+  "config": {
+    "headers": {
+      "Strict-Transport-Security": "max-age=63072000; includeSubDomains; preload",
+      "X-Content-Type-Options": "nosniff",
+      "X-Frame-Options": "DENY"
+    },
+    "listen": 443,
+    "server_name": "api.acme.example",
+    "server_tokens": "off",
+    "ssl": {
+      "ciphers": "ECDHE-ECDSA-AES256-GCM-SHA384:ECDHE-RSA-AES256-GCM-SHA384",
+      "prefer_server_ciphers": "on",
+      "protocols": [
+        "TLSv1.2",
+        "TLSv1.3"
+      ],
+      "session_tickets": "off",
+      "stapling": "on"
+    }
+  },
+  "digest": "fa4d556cb06a9edef60c0e23fd8a89adb7fe92a6ed843c2883df78cfd78ca8df"
+}

@@ -106,6 +106,7 @@ Options:
 | `-i, --ignore PATTERN` | Dotted-path glob to ignore (repeatable). |
 | `--ignore-file FILE` | File of ignore patterns, one per line (repeatable). |
 | `--json` | Emit the drift report as JSON. |
+| `--sarif` | Emit a SARIF 2.1.0 log (for GitHub code scanning / CI dashboards). |
 | `--fail-on-drift` | Exit non-zero (`1`) when any drift is detected (CI gate). |
 | `--no-verify` | Skip the baseline integrity check before diffing. |
 
@@ -138,6 +139,55 @@ JSON output (`--json`):
     { "kind": "changed", "path": "security.auth.mfa_required", "old": true, "new": false }
   ]
 }
+```
+
+### SARIF output (`--sarif`)
+
+For pipelines that already aggregate security findings, `--sarif` emits a
+[SARIF 2.1.0](https://docs.oasis-open.org/sarif/sarif/v2.1.0/sarif-v2.1.0.html)
+log so drift shows up alongside your other scanners — including
+**GitHub code scanning** via the `github/codeql-action/upload-sarif` action.
+
+Each drift entry becomes one SARIF `result`:
+
+- `ruleId` is `drift-added` / `drift-removed` / `drift-changed`.
+- `level` escalates to `error` for security-sensitive paths (TLS, auth, MFA,
+  password policy, RBAC permissions, firewall/CIDR/egress rules, …), otherwise
+  `warning` (added/changed) or `note` (removed).
+- The dotted path is carried in a `logicalLocations` entry and in
+  `partialFingerprints`, so findings stay stable and navigable across runs.
+
+```bash
+compliancedrift diff config/baseline.json config/live.json --sarif > drift.sarif
+```
+
+```yaml
+- name: Detect configuration drift
+  run: compliancedrift diff config/baseline.json config/live.json --sarif > drift.sarif
+- name: Upload drift findings
+  uses: github/codeql-action/upload-sarif@v3
+  with:
+    sarif_file: drift.sarif
+```
+
+---
+
+## Demos
+
+The [`demos/`](demos/) directory holds ten self-contained, real-use-case
+scenarios — each with a signed baseline, a drifted current config, an optional
+ignore file, and a `SCENARIO.md` describing the situation and how to act. They
+cover Kubernetes pod security, PostgreSQL/SSH/Nginx/Docker hardening, AWS S3 and
+security-group exposure, RBAC privilege creep, host firewall egress, and the
+art of separating expected churn from real drift. See
+[`demos/README.md`](demos/README.md) for the index and a one-liner to run them
+all.
+
+```bash
+compliancedrift diff \
+  demos/06-terraform-securitygroup/baseline.signed.json \
+  demos/06-terraform-securitygroup/current.json \
+  --sarif --fail-on-drift
 ```
 
 ---

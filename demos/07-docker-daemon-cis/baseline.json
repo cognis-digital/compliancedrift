@@ -1,0 +1,29 @@
+{
+  "daemon": {
+    "icc": false,
+    "userland-proxy": false,
+    "no-new-privileges": true,
+    "live-restore": true,
+    "userns-remap": "default",
+    "log-driver": "json-file",
+    "log-opts": {
+      "max-size": "10m",
+      "max-file": "3"
+    },
+    "default-ulimits": {
+      "nofile": {
+        "Hard": 65536,
+        "Soft": 65536
+      }
+    }
+  },
+  "tls": {
+    "tlsverify": true,
+    "tlscacert": "/etc/docker/ca.pem"
+  },
+  "snapshot": {
+    "captured_at": "2026-06-01T09:00:00Z",
+    "host": "docker-node-04",
+    "audit_run_id": "run-0001"
+  }
+}

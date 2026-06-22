@@ -1,0 +1,3 @@
+# Snapshot bookkeeping is expected to change on every audit run and is not drift.
+snapshot.captured_at
+snapshot.audit_run_id
