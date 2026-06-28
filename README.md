@@ -20,6 +20,62 @@ License: **COCL 1.0**
 
 ---
 
+
+<!-- cognis:example:start -->
+## 🔎 Example output
+
+Real, reproducible output from the tool — runs offline:
+
+```console
+$ compliancedrift --version
+compliancedrift 0.1.0
+```
+
+```console
+$ compliancedrift --help
+usage: compliancedrift [-h] [--version] {baseline,verify,diff} ...
+
+Configuration/compliance drift detector.
+
+positional arguments:
+  {baseline,verify,diff}
+    baseline            capture a config + embed a sha256 digest
+    verify              check a baseline's embedded digest
+    diff                report drift of current vs baseline
+
+options:
+  -h, --help            show this help message and exit
+  --version             show program's version number and exit
+```
+
+> Blocks above are real `compliancedrift` output — reproduce them from a clone.
+
+**Sample result format** _(illustrative values — run on your own data for real findings):_
+
+```
+$ compliancedrift baseline
+Config captured: {"key1": "value1", "key2": "value2"}
+SHA256 digest: 1234567890abcdef
+
+$ compliancedrift verify --file baseline.json
+Verification successful. SHA256 digest matches: 1234567890abcdef
+
+$ compliancedrift diff
+Drift detected:
+- key3: value3 (new)
++ key4: value4 (changed)
+
+JSON output:
+{
+  "drift": {
+    "added": ["key3"],
+    "changed": ["key4"]
+  }
+}
+```
+
+<!-- cognis:example:end -->
+
 ## Install
 
 ```bash

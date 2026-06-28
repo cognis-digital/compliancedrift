@@ -1,0 +1,15 @@
+$ compliancedrift --help
+
+usage: compliancedrift [-h] [--version] {baseline,verify,diff} ...
+
+Configuration/compliance drift detector.
+
+positional arguments:
+  {baseline,verify,diff}
+    baseline            capture a config + embed a sha256 digest
+    verify              check a baseline's embedded digest
+    diff                report drift of current vs baseline
+
+options:
+  -h, --help            show this help message and exit
+  --version             show program's version number and exit
